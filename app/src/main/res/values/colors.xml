@@ -8,4 +8,6 @@
     <color name="tertiary">#d4e0cc</color>
     <color name="quaternary">#dadbdd</color>
     <color name="quinary">#d8c788</color>
+
+    <color name="popup_background_color">#4D000000</color>
 </resources>
