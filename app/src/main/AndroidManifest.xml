@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spargne">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.Accueil"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Sign_in"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
