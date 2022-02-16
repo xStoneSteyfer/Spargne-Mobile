@@ -17,11 +17,19 @@ public class Singleton {
 
 
 
-    private String baseUrl = "https://s4-8006.nuage-peda.fr/Cosi_S/public/api/";
+    public static final String BASE_URL = "https://s4-8012.nuage-peda.fr/public/Spargne/public/api/";
+    private String token;
+    private User user;
 
 
 
-    public String getBaseUrl() {
-        return baseUrl;
-    }
+
+
+    public String getToken() { return token; }
+    public User getUser() { return user; }
+
+
+
+    public void setToken(String token) { this.token = token; }
+    public void setUser(User user) { this.user = user; }
 }

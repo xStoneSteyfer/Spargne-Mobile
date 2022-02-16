@@ -1,13 +1,22 @@
 package com.example.spargne.interfaces;
 
-import com.example.spargne.entity.EtatRetrofit;
+import com.example.spargne.entity.Login;
+import com.example.spargne.entity.User;
+import com.example.spargne.entity.Token;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 public interface WebServicesInterface {
 
-    @GET("connexion/{login}/{mdp}")
-    Call<EtatRetrofit> connexion(@Path("login") String login, @Path("mdp") String mdp);
+    @POST("authentication_token")
+    Call<Token> getToken(@Body Login login);
+
+    //@GET("users/getByUuid/{uuid}")
+    @GET("users/{uuid}")
+    Call<User> login(/*@Header("Authorization") String token, */@Path("uuid") String uuid);
 }

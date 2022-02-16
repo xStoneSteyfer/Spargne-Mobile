@@ -10,10 +10,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.spargne.R;
+import com.example.spargne.entity.Login;
+import com.example.spargne.entity.RetrofitError;
 import com.example.spargne.entity.Singleton;
-import com.example.spargne.entity.EtatRetrofit;
+import com.example.spargne.entity.User;
+import com.example.spargne.entity.Token;
 import com.example.spargne.interfaces.WebServicesInterface;
 import com.example.spargne.popup.Loading_popup;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -39,37 +43,65 @@ public class Sign_in extends AppCompatActivity {
     }
 
     public void onClickSignIn(View v){
+        Login login = new Login(e_login.getText().toString(), e_mdp.getText().toString());
+
         popupLoading = new Loading_popup(this);
         popupLoading.build();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().getBaseUrl()).addConverterFactory(GsonConverterFactory.create()).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
-        Call<EtatRetrofit> connexion = webServicesInterface.connexion(e_login.getText().toString(), e_mdp.getText().toString());
-        connexion.enqueue(new Callback<EtatRetrofit>() {
+        Call<Token> getToken = webServicesInterface.getToken(login);
+        getToken.enqueue(new Callback<Token>() {
             @Override
-            public void onResponse(Call<EtatRetrofit> call, Response<EtatRetrofit> response) {
+            public void onResponse(Call<Token> call, Response<Token> response) {
                 if (response.body() != null) {
-                    if (response.body().getEtat().equals("success")) {
-                        afterApiResponse(response.body());
-                        popupLoading.dismiss();
-                    } else {
-                        Toast.makeText(Sign_in.this, response.body().getException(), Toast.LENGTH_SHORT).show();
-                        popupLoading.dismiss();
-                    }
+                    afterApiResponse(response.body());
                 } else {
-                    Toast.makeText(Sign_in.this, "Erreur connexion", Toast.LENGTH_SHORT).show();
+                    Gson gson = new Gson();
+                    RetrofitError error = gson.fromJson(response.errorBody().charStream(), RetrofitError.class);
+                    Toast.makeText(Sign_in.this, error.getMessage(), Toast.LENGTH_SHORT).show();
                     popupLoading.dismiss();
                 }
             }
 
             @Override
-            public void onFailure(Call<EtatRetrofit> call, Throwable t) {
-                Toast.makeText(Sign_in.this, "Erreur connexion", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<Token> call, Throwable t) {
+                Toast.makeText(Sign_in.this, "Error connection", Toast.LENGTH_SHORT).show();
                 popupLoading.dismiss();
             }
         });
     }
 
-    public void afterApiResponse(EtatRetrofit responseBody){
+    public void afterApiResponse(Token tokenResponse){
+        Singleton.getInstance().setToken(tokenResponse.getToken());
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
+        Call<User> login = webServicesInterface.login(/*Singleton.getInstance().getToken(),*/ e_login.getText().toString());
+        login.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (response.body() != null) {
+                    afterApiResponse2(response.body());
+                    popupLoading.dismiss();
+                } else {
+                    Gson gson = new Gson();
+                    RetrofitError error = gson.fromJson(response.errorBody().charStream(), RetrofitError.class);
+                    Toast.makeText(Sign_in.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    popupLoading.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(Sign_in.this, "Error connection", Toast.LENGTH_SHORT).show();
+                popupLoading.dismiss();
+            }
+        });
+    }
+
+    public void afterApiResponse2(User user) {
+        Singleton.getInstance().setUser(user);
+
         Intent i = new Intent(Sign_in.this, Accueil.class);
         startActivity(i);
     }
