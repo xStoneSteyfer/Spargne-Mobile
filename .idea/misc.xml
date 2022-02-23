@@ -6,16 +6,20 @@
         <entry key="..\:/Users/Station De Montage/AndroidStudioProjects/Spargne/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/drawable-v24/pop_up_loading_progress_bar_style.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/drawable/bottom_navigation_selector.xml" value="0.21875" />
+        <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/drawable/card.xml" value="0.37864583333333335" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/activity_accueil.xml" value="0.33" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/activity_main.xml" value="0.3625" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/activity_signin.xml" value="0.33" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/activity_signin2.xml" value="0.20260416666666667" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/activity_tmp.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/fragment_account.xml" value="0.33" />
+        <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/fragment_account_layout_account.xml" value="0.3625" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/fragment_card.xml" value="0.37447916666666664" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/fragment_home_layout_list_transaction.xml" value="0.3625" />
+        <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/fragment_home_layout_transaction.xml" value="0.3625" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/fragment_menu.xml" value="0.3625" />
-        <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/fragment_transfer.xml" value="0.3625" />
+        <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/fragment_transfer.xml" value="0.67" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/layout/pop_up_loading.xml" value="0.3625" />
         <entry key="..\:/Users/Station De Montage/Desktop/Spargne/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3625" />
       </map>

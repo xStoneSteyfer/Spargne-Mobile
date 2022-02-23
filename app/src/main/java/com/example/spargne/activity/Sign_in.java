@@ -105,4 +105,9 @@ public class Sign_in extends AppCompatActivity {
         Intent i = new Intent(Sign_in.this, Accueil.class);
         startActivity(i);
     }
+
+    public void TMP(View v) {
+        Intent i = new Intent(Sign_in.this, Accueil.class);
+        startActivity(i);
+    }
 }
