@@ -72,11 +72,11 @@ public class Sign_in extends AppCompatActivity {
     }
 
     public void afterApiResponse(Token tokenResponse){
-        Singleton.getInstance().setToken(tokenResponse.getToken());
+        Singleton.getInstance().setToken("Bearer " + tokenResponse.getToken());
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
-        Call<User> login = webServicesInterface.login(/*Singleton.getInstance().getToken(),*/ e_login.getText().toString());
+        Call<User> login = webServicesInterface.login(Singleton.getInstance().getToken(), e_login.getText().toString());
         login.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {

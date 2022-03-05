@@ -11,10 +11,6 @@ public class Transaction {
     public String getLibelle() { return libelle; }
     public double getAmount() { return amount; }
 
-    public void setDate(String date) { this.date = date; }
-    public void setLibelle(String libelle) { this.libelle = libelle; }
-    public void setAmount(double amount) { this.amount = amount; }
-
     public Transaction(String date, String libelle, double amount) {
         this.date = date;
         this.libelle = libelle;

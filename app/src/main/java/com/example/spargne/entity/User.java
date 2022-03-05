@@ -2,6 +2,7 @@ package com.example.spargne.entity;
 
 import android.graphics.Bitmap;
 
+import com.google.gson.JsonArray;
 import com.google.gson.annotations.SerializedName;
 
 import java.lang.reflect.Array;
@@ -13,7 +14,7 @@ public class User {
     @SerializedName("uuid")
     private String uuid;
     @SerializedName("roles")
-    private Array roles;
+    private JsonArray roles;
     @SerializedName("password")
     private String password;
     @SerializedName("email")
@@ -40,7 +41,7 @@ public class User {
 
     public int getId() { return id; }
     public String getUuid() { return uuid; }
-    public Array getRoles() { return roles; }
+    public JsonArray getRoles() { return roles; }
     public String getPassword() { return password; }
     public String getEmail() { return email; }
     public String getName() { return name; }

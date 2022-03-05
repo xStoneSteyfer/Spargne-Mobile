@@ -18,5 +18,5 @@ public interface WebServicesInterface {
 
     //@GET("users/getByUuid/{uuid}")
     @GET("users/{uuid}")
-    Call<User> login(/*@Header("Authorization") String token, */@Path("uuid") String uuid);
+    Call<User> login(@Header("Authorization") String token, @Path("uuid") String uuid);
 }
