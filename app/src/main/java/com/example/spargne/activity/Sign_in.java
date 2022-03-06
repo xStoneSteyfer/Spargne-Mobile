@@ -76,8 +76,8 @@ public class Sign_in extends AppCompatActivity {
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
-        Call<User> login = webServicesInterface.login(Singleton.getInstance().getToken(), e_login.getText().toString());
-        login.enqueue(new Callback<User>() {
+        Call<User> getUserByUuid = webServicesInterface.getUserByUuid(Singleton.getInstance().getToken(), e_login.getText().toString());
+        getUserByUuid.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.body() != null) {
