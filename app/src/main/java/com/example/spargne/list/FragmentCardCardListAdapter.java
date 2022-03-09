@@ -8,8 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spargne.R;
-import com.example.spargne.entity.Account;
-import com.example.spargne.entity.CardList;
+import com.example.spargne.model.CardList;
 
 public class FragmentCardCardListAdapter extends RecyclerView.Adapter<FragmentCardCardCellHolder> {
     private CardList[] dataSource;

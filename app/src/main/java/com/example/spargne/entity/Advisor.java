@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Date;
 
-public class User {
+public class Advisor {
 
     @SerializedName("id")
     private int id;
@@ -31,18 +31,6 @@ public class User {
     private String city;
     @SerializedName("phone_number")
     private String phone_number;
-    @SerializedName("advisor")
-    private Advisor advisor;
-    @SerializedName("firstMdp")
-    private boolean firstMdp;
-    @SerializedName("accounts")
-    private Account[] accounts;
-    @SerializedName("beneficiaries")
-    private Beneficiary[] beneficiaries;
-    @SerializedName("cards")
-    private Card[] cards;
-
-
 
     public int getId() { return id; }
     public String getUuid() { return uuid; }
@@ -56,9 +44,4 @@ public class User {
     public String getCountry() { return country; }
     public String getCity() { return city; }
     public String getPhone_number() { return phone_number; }
-    public Advisor getAdvisor() { return advisor; }
-    public boolean isFirstMdp() { return firstMdp; }
-    public Account[] getAccounts() { return accounts; }
-    public Beneficiary[] getBeneficiaries() { return beneficiaries; }
-    public Card[] getCards() { return cards; }
 }

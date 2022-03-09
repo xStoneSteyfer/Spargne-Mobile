@@ -1,4 +1,6 @@
-package com.example.spargne.entity;
+package com.example.spargne.model;
+
+import com.example.spargne.entity.User;
 
 public class Singleton {
 
@@ -17,7 +19,6 @@ public class Singleton {
 
 
 
-    //public static final String BASE_URL = "https://s4-8012.nuage-peda.fr/public/Spargne/public/api/";
     public static final String BASE_URL = "https://s4-8040.nuage-peda.fr/Spargne/public/api/";
     private String token;
     private User user;

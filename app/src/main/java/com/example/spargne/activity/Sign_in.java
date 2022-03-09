@@ -11,8 +11,9 @@ import android.widget.Toast;
 
 import com.example.spargne.R;
 import com.example.spargne.entity.Login;
-import com.example.spargne.entity.RetrofitError;
-import com.example.spargne.entity.Singleton;
+import com.example.spargne.model.RetrofitError;
+import com.example.spargne.model.RetrofitRequest;
+import com.example.spargne.model.Singleton;
 import com.example.spargne.entity.User;
 import com.example.spargne.entity.Token;
 import com.example.spargne.interfaces.WebServicesInterface;
@@ -44,6 +45,10 @@ public class Sign_in extends AppCompatActivity {
 
     public void onClickSignIn(View v){
         Login login = new Login(e_login.getText().toString(), e_mdp.getText().toString());
+
+        /*RetrofitRequest retrofitRequest = new RetrofitRequest();
+        retrofitRequest.requestGetToken(this, login);
+        System.out.println("Je suis après la reponse retrofit (enfaite non ...)");*/
 
         popupLoading = new Loading_popup(this);
         popupLoading.build();
@@ -82,7 +87,6 @@ public class Sign_in extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.body() != null) {
                     afterApiResponse2(response.body());
-                    popupLoading.dismiss();
                 } else {
                     Gson gson = new Gson();
                     RetrofitError error = gson.fromJson(response.errorBody().charStream(), RetrofitError.class);
@@ -104,10 +108,6 @@ public class Sign_in extends AppCompatActivity {
 
         Intent i = new Intent(Sign_in.this, Accueil.class);
         startActivity(i);
-    }
-
-    public void TMP(View v) {
-        Intent i = new Intent(Sign_in.this, Accueil.class);
-        startActivity(i);
+        popupLoading.dismiss();
     }
 }

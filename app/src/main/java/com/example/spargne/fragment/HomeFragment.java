@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spargne.R;
+import com.example.spargne.model.Singleton;
 import com.example.spargne.entity.Transaction;
-import com.example.spargne.entity.User;
 import com.example.spargne.list.FragmentHomeTransactionListAdapter;
 
 public class HomeFragment extends Fragment {
@@ -44,9 +44,9 @@ public class HomeFragment extends Fragment {
         t_advisorName = getView().findViewById(R.id.fragment_home_textView_advisorName);
         t_advisorLocation = getView().findViewById(R.id.fragment_home_textView_advisorLocation);
 
-        t_accountLibelle.setText("C/C Vip Tranquilite");
-        t_accountAmount.setText("+ 2 105.42 €");
-        t_accountId.setText("***** ****44 15");
+        t_accountLibelle.setText(Singleton.getInstance().getUser().getAccounts()[0].getName());
+        t_accountAmount.setText(String.valueOf(Singleton.getInstance().getUser().getAccounts()[0].getBalance()));
+        t_accountId.setText(Singleton.getInstance().getUser().getAccounts()[0].getIban());
 
         r_transaction.setHasFixedSize(true);
         fragmentHomeTransactionManager = new LinearLayoutManager(getContext());
@@ -59,7 +59,7 @@ public class HomeFragment extends Fragment {
         fragmentHomeTransactionListAdapter = new FragmentHomeTransactionListAdapter(list1);
         r_transaction.setAdapter(fragmentHomeTransactionListAdapter);
 
-        t_advisorName.setText("M. Robin Victor");
-        t_advisorLocation.setText("S'pargne Center in Arras, France");
+        t_advisorName.setText(Singleton.getInstance().getUser().getAdvisor().getName() + " " +Singleton.getInstance().getUser().getAdvisor().getFirst_name());
+        t_advisorLocation.setText("S'pargne Center in " + Singleton.getInstance().getUser().getAdvisor().getCity() + ", " + Singleton.getInstance().getUser().getAdvisor().getCountry());
     }
 }

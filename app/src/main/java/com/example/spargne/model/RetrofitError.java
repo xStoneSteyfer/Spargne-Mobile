@@ -1,4 +1,4 @@
-package com.example.spargne.entity;
+package com.example.spargne.model;
 
 public class RetrofitError {
     private int code;

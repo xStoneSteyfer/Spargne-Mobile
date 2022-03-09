@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spargne.R;
 import com.example.spargne.entity.Account;
-import com.example.spargne.entity.Transaction;
+import com.example.spargne.model.Singleton;
 
 public class FragmentAccountAccountListAdapter extends RecyclerView.Adapter<FragmentAccountAccountCellHolder> {
     private Account[] dataSource;
@@ -29,10 +29,10 @@ public class FragmentAccountAccountListAdapter extends RecyclerView.Adapter<Frag
 
     @Override
     public void onBindViewHolder(@NonNull FragmentAccountAccountCellHolder holder, int position) {
-        holder.t_libelle.setText(dataSource[position].getLibelle());
-        holder.t_amount.setText(String.valueOf(dataSource[position].getAmount()) + " €");
-        holder.t_id.setText(dataSource[position].getId());
-        holder.t_owner.setText(dataSource[position].getOwner());
+        holder.t_libelle.setText(dataSource[position].getName());
+        holder.t_amount.setText(String.valueOf(dataSource[position].getBalance()) + " €");
+        holder.t_id.setText(dataSource[position].getIban());
+        holder.t_owner.setText(Singleton.getInstance().getUser().getName() + " " +Singleton.getInstance().getUser().getFirst_name());
     }
 
     @Override

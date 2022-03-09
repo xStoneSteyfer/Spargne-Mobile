@@ -1,4 +1,4 @@
-package com.example.spargne.entity;
+package com.example.spargne.model;
 
 public class CardList {
     private String owner;

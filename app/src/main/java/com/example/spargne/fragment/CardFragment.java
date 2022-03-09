@@ -12,9 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spargne.R;
-import com.example.spargne.entity.Account;
-import com.example.spargne.entity.CardList;
-import com.example.spargne.list.FragmentAccountAccountListAdapter;
+import com.example.spargne.model.CardList;
 import com.example.spargne.list.FragmentCardCardListAdapter;
 
 public class CardFragment extends Fragment {

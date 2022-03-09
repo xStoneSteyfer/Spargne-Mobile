@@ -1,41 +1,40 @@
 package com.example.spargne.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 public class Account {
-    private String libelle;
-    private double amount;
-    private String id;
-    private String owner;
 
-    public String getLibelle() { return libelle; }
-    public double getAmount() { return amount; }
-    public String getOwner() { return owner; }
-
-    public Account(String libelle, double amount, String id, String owner) {
-        this.libelle = libelle;
-        this.amount = amount;
-        this.id = id;
-        this.owner = owner;
-    }
-
-    /*private int id;
+    @SerializedName("id")
+    private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("num")
     private String num;
+    @SerializedName("iban")
     private String iban;
-    private int balance;
+    @SerializedName("balance")
+    private double balance;
+    @SerializedName("creation_date")
     private Date creation_date;
+    @SerializedName("limitBalance")
     private int limitBalance;
+    @SerializedName("overdraft")
     private int overdraft;
-    private int rate;*/
+    @SerializedName("rate")
+    private int rate;
+    @SerializedName("type")
+    private AccountType type;
 
-    public String getId() { return id; }
-    /*public String getName() { return name; }
+    public int getId() { return id; }
+    public String getName() { return name; }
     public String getNum() { return num; }
     public String getIban() { return iban; }
-    public int getBalance() { return balance; }
+    public double getBalance() { return balance; }
     public Date getCreation_date() { return creation_date; }
     public int getLimitBalance() { return limitBalance; }
     public int getOverdraft() { return overdraft; }
-    public int getRate() { return rate; }*/
+    public int getRate() { return rate; }
+    public AccountType getType() { return type; }
 }

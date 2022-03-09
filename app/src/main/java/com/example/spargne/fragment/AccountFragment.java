@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spargne.R;
 import com.example.spargne.entity.Account;
-import com.example.spargne.entity.Transaction;
+import com.example.spargne.model.Singleton;
 import com.example.spargne.list.FragmentAccountAccountListAdapter;
-import com.example.spargne.list.FragmentHomeTransactionListAdapter;
+
+import java.util.ArrayList;
 
 public class AccountFragment extends Fragment {
     private RecyclerView r_currentAccount;
@@ -34,23 +35,29 @@ public class AccountFragment extends Fragment {
         r_currentAccount = getView().findViewById(R.id.fragment_account_recyclerView_currentAccount);
         r_savingsAccount = getView().findViewById(R.id.fragment_account_recyclerView_savingsAccount);
 
+        ArrayList<Account> currentAccountArrayList = new ArrayList<Account>();
+        ArrayList<Account> savingsAccountArrayList = new ArrayList<Account>();
+        for (Account account : Singleton.getInstance().getUser().getAccounts()) {
+            if(account.getType().getId() == 1){
+                currentAccountArrayList.add(account);
+            }
+            if(account.getType().getId() == 2){
+                savingsAccountArrayList.add(account);
+            }
+        }
+        Account[] currentAccountList = currentAccountArrayList.toArray(new Account[currentAccountArrayList.size()]);
+        Account[] savingsAccountList = savingsAccountArrayList.toArray(new Account[savingsAccountArrayList.size()]);
+
         r_currentAccount.setHasFixedSize(true);
         fragmentAccountAccountManager = new LinearLayoutManager(getContext());
         r_currentAccount.setLayoutManager(fragmentAccountAccountManager);
-        Account[] list1 = {
-                new Account("C/C Vip Tranquilite", 2105.42, "***** ****44 15", "M Xavier Van Cauwenberge")
-        };
-        fragmentAccountAccountListAdapter = new FragmentAccountAccountListAdapter(list1);
+        fragmentAccountAccountListAdapter = new FragmentAccountAccountListAdapter(currentAccountList);
         r_currentAccount.setAdapter(fragmentAccountAccountListAdapter);
 
         r_savingsAccount.setHasFixedSize(true);
         fragmentAccountAccountManager = new LinearLayoutManager(getContext());
         r_savingsAccount.setLayoutManager(fragmentAccountAccountManager);
-        Account[] list2 = {
-                new Account("Livret jeune", 1752.12, "***** ****44 02", "M Xavier Van Cauwenberge"),
-                new Account("Livret bleu", 557.86, "***** ****44 09", "M Xavier Van Cauwenberge")
-        };
-        fragmentAccountAccountListAdapter = new FragmentAccountAccountListAdapter(list2);
+        fragmentAccountAccountListAdapter = new FragmentAccountAccountListAdapter(savingsAccountList);
         r_savingsAccount.setAdapter(fragmentAccountAccountListAdapter);
     }
 }
