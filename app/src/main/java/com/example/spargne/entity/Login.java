@@ -8,4 +8,7 @@ public class Login {
         this.uuid = uuid;
         this.password = password;
     }
+
+    public String getUuid() { return uuid; }
+    public String getPassword() { return password; }
 }
