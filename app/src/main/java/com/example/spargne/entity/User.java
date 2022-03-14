@@ -61,4 +61,8 @@ public class User {
     public Account[] getAccounts() { return accounts; }
     public Beneficiary[] getBeneficiaries() { return beneficiaries; }
     public Card[] getCards() { return cards; }
+
+    public void setAccounts(Account[] accounts) { this.accounts = accounts; }
+    public void setBeneficiaries(Beneficiary[] beneficiaries) { this.beneficiaries = beneficiaries; }
+    public void setCards(Card[] cards) { this.cards = cards; }
 }

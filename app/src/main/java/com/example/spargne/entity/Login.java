@@ -10,5 +10,6 @@ public class Login {
     }
 
     public String getUuid() { return uuid; }
-    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 }

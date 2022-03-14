@@ -28,6 +28,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Sign_in extends AppCompatActivity {
 
+    Loading_popup popupLoading;
+
     EditText e_login;
     EditText e_mdp;
     Button b_signIn;
@@ -44,8 +46,36 @@ public class Sign_in extends AppCompatActivity {
 
     public void onClickSignIn(View v){
         Login login = new Login(e_login.getText().toString(), e_mdp.getText().toString());
+        Singleton.getInstance().setLogin(login);
 
-        RetrofitRequest retrofitRequest = new RetrofitRequest();
-        retrofitRequest.getUserByUuid(this, Accueil.class, login);
+        popupLoading = new Loading_popup(this);
+        popupLoading.build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
+        Call<Token> getToken = webServicesInterface.getToken(login);
+        getToken.enqueue(new Callback<Token>() {
+            @Override
+            public void onResponse(Call<Token> call, Response<Token> response) {
+                if (response.body() != null) {
+                    Singleton.getInstance().setToken("Bearer " + response.body().getToken());
+                    Singleton.getInstance().getLogin().setPassword(null);
+                    Singleton.getInstance().setRequestGetUserByUuid(true);
+                    Singleton.getInstance().setRequestGetAccountByUuid(true);
+                    Intent i = new Intent(Sign_in.this, Accueil.class);
+                    startActivity(i);
+                } else {
+                    Gson gson = new Gson();
+                    RetrofitError error = gson.fromJson(response.errorBody().charStream(), RetrofitError.class);
+                    Toast.makeText(Sign_in.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    popupLoading.dismiss();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Token> call, Throwable t) {
+                Toast.makeText(Sign_in.this, "Error connection", Toast.LENGTH_SHORT).show();
+                popupLoading.dismiss();
+            }
+        });
     }
 }

@@ -1,5 +1,6 @@
 package com.example.spargne.interfaces;
 
+import com.example.spargne.entity.Account;
 import com.example.spargne.entity.Login;
 import com.example.spargne.entity.User;
 import com.example.spargne.entity.Token;
@@ -18,4 +19,7 @@ public interface WebServicesInterface {
 
     @GET("users/{uuid}")
     Call<User> getUserByUuid(@Header("Authorization") String token, @Path("uuid") String uuid);
+
+    @GET("accounts/{uuid}")
+    Call<Account[]> getAccountByUuid(@Header("Authorization") String token, @Path("uuid") String uuid);
 }
