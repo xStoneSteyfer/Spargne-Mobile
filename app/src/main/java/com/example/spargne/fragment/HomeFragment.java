@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment {
 
         try {
             t_accountLibelle.setText(Singleton.getInstance().getUser().getAccounts()[0].getName());
-            t_accountAmount.setText(String.valueOf(Singleton.getInstance().getUser().getAccounts()[0].getBalance()));
+            t_accountAmount.setText(String.valueOf(Singleton.getInstance().getUser().getAccounts()[0].getBalance()) + " €");
             t_accountId.setText(Singleton.getInstance().getUser().getAccounts()[0].getIban());
         } catch (Exception e){
             pb_accountLibelle.setVisibility(View.VISIBLE);

@@ -17,7 +17,7 @@ public class Account {
     @SerializedName("balance")
     private double balance;
     @SerializedName("creation_date")
-    private Date creation_date;
+    private String creation_date;
     @SerializedName("limitBalance")
     private int limitBalance;
     @SerializedName("overdraft")
@@ -32,7 +32,7 @@ public class Account {
     public String getNum() { return num; }
     public String getIban() { return iban; }
     public double getBalance() { return balance; }
-    public Date getCreation_date() { return creation_date; }
+    public String getCreation_date() { return creation_date; }
     public int getLimitBalance() { return limitBalance; }
     public int getOverdraft() { return overdraft; }
     public int getRate() { return rate; }
