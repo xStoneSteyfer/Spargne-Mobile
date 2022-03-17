@@ -28,7 +28,6 @@ public class RetrofitRequest {
 
     public void getUserByUuid(Activity activity)
     {
-        Singleton.getInstance().setRequestGetUserByUuid(false);
         activity.findViewById(R.id.bottomNavigationView).setEnabled(false);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
@@ -58,7 +57,6 @@ public class RetrofitRequest {
 
     public void getAccountByUuid(Activity activity)
     {
-        Singleton.getInstance().setRequestGetAccountByUuid(false);
         activity.findViewById(R.id.bottomNavigationView).setEnabled(false);
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);

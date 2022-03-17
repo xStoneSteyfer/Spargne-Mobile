@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Spargne">
         <activity
+            android:name=".activity.AccountDetails"
+            android:exported="false" />
+        <activity
             android:name=".activity.Accueil"
             android:exported="false" />
         <activity

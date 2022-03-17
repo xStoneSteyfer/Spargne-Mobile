@@ -16,7 +16,7 @@
         android:layout_marginTop="-10dp"
         android:layout_marginEnd="-10dp"
         android:layout_marginBottom="-10dp"
-        android:background="@drawable/card"
+        android:background="@drawable/card_white"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_account_layout_account_textView_owner"
         app:layout_constraintEnd_toEndOf="@+id/fragment_account_layout_account_textView_amount"
         app:layout_constraintStart_toStartOf="@+id/fragment_account_layout_account_textView_libelle"

@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.spargne.R;
 import com.example.spargne.fragment.AccountFragment;
@@ -75,5 +77,11 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
             return true;
         }
         return false;
+    }
+
+    public void goToAccountDetails(View v){
+        Intent i = new Intent(this, AccountDetails.class);
+        i.putExtra("numAccount", 0);
+        startActivity(i);
     }
 }

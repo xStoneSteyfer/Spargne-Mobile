@@ -10,14 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spargne.R;
 import com.example.spargne.model.RetrofitRequest;
 import com.example.spargne.model.Singleton;
-import com.example.spargne.entity.Transaction;
-import com.example.spargne.list.FragmentHomeTransactionListAdapter;
 
 public class HomeFragment extends Fragment {
     private ProgressBar pb_accountLibelle;
@@ -47,10 +44,12 @@ public class HomeFragment extends Fragment {
         if(Singleton.getInstance().isRequestGetUserByUuid()) {
             RetrofitRequest retrofitRequest = new RetrofitRequest();
             retrofitRequest.getUserByUuid(getActivity());
+            Singleton.getInstance().setRequestGetUserByUuid(false);
         }
         if(Singleton.getInstance().isRequestGetAccountByUuid()) {
             RetrofitRequest retrofitRequest = new RetrofitRequest();
             retrofitRequest.getAccountByUuid(getActivity());
+            Singleton.getInstance().setRequestGetAccountByUuid(false);
         }
 
         pb_accountLibelle = getView().findViewById(R.id.fragment_home_progressBar_accountLibelle);
