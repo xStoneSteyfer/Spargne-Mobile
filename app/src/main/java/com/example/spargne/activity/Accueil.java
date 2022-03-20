@@ -84,4 +84,12 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
         i.putExtra("numAccount", 0);
         startActivity(i);
     }
+
+
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, Sign_in.class);
+        startActivity(i);
+    }
 }
