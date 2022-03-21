@@ -45,6 +45,8 @@ public class Sign_in extends AppCompatActivity {
     }
 
     public void onClickSignIn(View v){
+        Singleton.getInstance().clear();
+
         Login login = new Login(e_login.getText().toString(), e_mdp.getText().toString());
         Singleton.getInstance().setLogin(login);
 
@@ -60,6 +62,7 @@ public class Sign_in extends AppCompatActivity {
                     Singleton.getInstance().setToken("Bearer " + response.body().getToken());
                     Singleton.getInstance().getLogin().setPassword(null);
                     Singleton.getInstance().setRequestGetUserByUuid(true);
+                    Singleton.getInstance().setRequestGetAccountByUuid(true);
                     Intent i = new Intent(Sign_in.this, Accueil.class);
                     startActivity(i);
                 } else {

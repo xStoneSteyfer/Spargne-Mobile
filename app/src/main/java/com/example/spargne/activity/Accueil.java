@@ -17,6 +17,7 @@ import com.example.spargne.fragment.HomeFragment;
 import com.example.spargne.fragment.MenuFragment;
 import com.example.spargne.fragment.TransferFragment;
 import com.example.spargne.interfaces.OnFragmentAccountListAccountClickListener;
+import com.example.spargne.model.Singleton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Accueil extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, OnFragmentAccountListAccountClickListener {
@@ -38,11 +39,32 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
         transferFragment = new TransferFragment();
         cardFragment = new CardFragment();
         menuFragment = new MenuFragment();
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        loadFragment(homeFragment);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+
+        switch (Singleton.getInstance().currentFragment) {
+            case "homeFragment":
+                loadFragment(homeFragment);
+                bottomNavigationView.getMenu().getItem(0).setChecked(true);
+                break;
+            case "accountFragment":
+                loadFragment(accountFragment);
+                bottomNavigationView.getMenu().getItem(1).setChecked(true);
+                break;
+            case "transferFragment":
+                loadFragment(transferFragment);
+                bottomNavigationView.getMenu().getItem(2).setChecked(true);
+                break;
+            case "cardFragment":
+                loadFragment(cardFragment);
+                bottomNavigationView.getMenu().getItem(3).setChecked(true);
+                break;
+            case "menuFragment":
+                loadFragment(menuFragment);
+                bottomNavigationView.getMenu().getItem(4).setChecked(true);
+                break;
+        }
     }
 
 
@@ -53,18 +75,25 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
         switch (item.getItemId()) {
             case R.id.action_home:
                 fragment = homeFragment;
+                Singleton.getInstance().currentFragment = "homeFragment";
+                Singleton.getInstance().setRequestGetAccountByUuid(true);
                 break;
             case R.id.action_account:
                 fragment = accountFragment;
+                Singleton.getInstance().currentFragment = "accountFragment";
+                Singleton.getInstance().setRequestGetAccountByUuid(true);
                 break;
             case R.id.action_transfer:
                 fragment = transferFragment;
+                Singleton.getInstance().currentFragment = "transferFragment";
                 break;
             case R.id.action_card:
                 fragment = cardFragment;
+                Singleton.getInstance().currentFragment = "cardFragment";
                 break;
             case R.id.action_menu:
                 fragment = menuFragment;
+                Singleton.getInstance().currentFragment = "menuFragment";
                 break;
         }
         return loadFragment(fragment);

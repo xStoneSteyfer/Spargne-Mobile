@@ -1,6 +1,7 @@
 package com.example.spargne.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,10 +47,12 @@ public class HomeFragment extends Fragment {
             retrofitRequest.getUserByUuid(getActivity());
             Singleton.getInstance().setRequestGetUserByUuid(false);
         }
-        if(Singleton.getInstance().isRequestGetAccountByUuid()) {
-            RetrofitRequest retrofitRequest = new RetrofitRequest();
-            retrofitRequest.getAccountByUuid(getActivity());
-            Singleton.getInstance().setRequestGetAccountByUuid(false);
+        if (Singleton.getInstance().getUser() != null) {
+            if (Singleton.getInstance().isRequestGetAccountByUuid()) {
+                RetrofitRequest retrofitRequest = new RetrofitRequest();
+                retrofitRequest.getAccountByUuid(getActivity());
+                Singleton.getInstance().setRequestGetAccountByUuid(false);
+            }
         }
 
         pb_accountLibelle = getView().findViewById(R.id.fragment_home_progressBar_accountLibelle);

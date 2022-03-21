@@ -37,7 +37,6 @@ public class RetrofitRequest {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.body() != null) {
                     Singleton.getInstance().setUser(response.body());
-                    Singleton.getInstance().setRequestGetAccountByUuid(true);
                     Intent i = activity.getIntent();
                     activity.overridePendingTransition(0, 0);
                     i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
