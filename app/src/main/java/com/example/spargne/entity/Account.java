@@ -26,6 +26,7 @@ public class Account {
     private int rate;
     @SerializedName("type")
     private AccountType type;
+    private int index;
 
     public int getId() { return id; }
     public String getName() { return name; }
@@ -37,4 +38,7 @@ public class Account {
     public int getOverdraft() { return overdraft; }
     public int getRate() { return rate; }
     public AccountType getType() { return type; }
+    public int getIndex() { return index; }
+
+    public void setIndex(int index) { this.index = index; }
 }

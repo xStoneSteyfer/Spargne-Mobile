@@ -10,14 +10,16 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.example.spargne.R;
+import com.example.spargne.entity.Account;
 import com.example.spargne.fragment.AccountFragment;
 import com.example.spargne.fragment.CardFragment;
 import com.example.spargne.fragment.HomeFragment;
 import com.example.spargne.fragment.MenuFragment;
 import com.example.spargne.fragment.TransferFragment;
+import com.example.spargne.interfaces.OnFragmentAccountListAccountClickListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Accueil extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class Accueil extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, OnFragmentAccountListAccountClickListener {
 
     Fragment homeFragment;
     Fragment accountFragment;
@@ -79,9 +81,22 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
         return false;
     }
 
-    public void goToAccountDetails(View v){
+
+
+
+
+    public void goToFirstAccountDetails(View v){
+        goToAccountDetails(0);
+    }
+
+    @Override
+    public void onAccountListClick(int indexAccount) {
+        goToAccountDetails(indexAccount);
+    }
+
+    public void goToAccountDetails(int indexAccount){
         Intent i = new Intent(this, AccountDetails.class);
-        i.putExtra("numAccount", 0);
+        i.putExtra("indexAccount", indexAccount);
         startActivity(i);
     }
 

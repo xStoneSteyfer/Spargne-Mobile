@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="TEST"
+        android:text="TextView"
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:text="TEST 2"
+        android:text="0000,00 €"
         android:textAlignment="textEnd"
         android:textColor="@color/white"
         android:textSize="18sp"
@@ -86,6 +86,47 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view12" />
+        app:layout_constraintTop_toBottomOf="@+id/view12">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:id="@+id/activity_accountDetails_progressBar_accountLibelle"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:indeterminate="true"
+        android:scaleY="4"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_accountDetails_textView_accountLibelle"
+        app:layout_constraintEnd_toEndOf="@+id/activity_accountDetails_textView_accountLibelle"
+        app:layout_constraintStart_toStartOf="@+id/activity_accountDetails_textView_accountLibelle"
+        app:layout_constraintTop_toTopOf="@+id/activity_accountDetails_textView_accountLibelle" />
+
+    <ProgressBar
+        android:id="@+id/activity_accountDetails_progressBar_accountAmount"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:indeterminate="true"
+        android:scaleY="4"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_accountDetails_textView_accountAmount"
+        app:layout_constraintEnd_toEndOf="@+id/activity_accountDetails_textView_accountAmount"
+        app:layout_constraintStart_toStartOf="@+id/activity_accountDetails_textView_accountAmount"
+        app:layout_constraintTop_toTopOf="@+id/activity_accountDetails_textView_accountAmount" />
+
+    <ProgressBar
+        android:id="@+id/activity_accountDetails_progressBar_transaction"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_accountDetails_recyclerView_transaction"
+        app:layout_constraintEnd_toEndOf="@+id/activity_accountDetails_recyclerView_transaction"
+        app:layout_constraintStart_toStartOf="@+id/activity_accountDetails_recyclerView_transaction"
+        app:layout_constraintTop_toTopOf="@+id/activity_accountDetails_recyclerView_transaction" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

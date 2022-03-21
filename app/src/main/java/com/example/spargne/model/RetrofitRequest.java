@@ -68,6 +68,9 @@ public class RetrofitRequest {
                 if (response.body() != null) {
                     if (Singleton.getInstance().getUser() != null) {
                         Singleton.getInstance().getUser().setAccounts(response.body());
+                        for(int i = 0; i < Singleton.getInstance().getUser().getAccounts().length; i++) {
+                            Singleton.getInstance().getUser().getAccounts()[i].setIndex(i);
+                        }
                     } else {
                         Singleton.getInstance().setRequestGetUserByUuid(true);
                     }

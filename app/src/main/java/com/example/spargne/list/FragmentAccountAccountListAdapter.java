@@ -9,13 +9,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spargne.R;
 import com.example.spargne.entity.Account;
+import com.example.spargne.interfaces.OnFragmentAccountListAccountClickListener;
 import com.example.spargne.model.Singleton;
 
 public class FragmentAccountAccountListAdapter extends RecyclerView.Adapter<FragmentAccountAccountCellHolder> {
     private Account[] dataSource;
+    private OnFragmentAccountListAccountClickListener onFragmentAccountListAccountClickListener;
 
-    public FragmentAccountAccountListAdapter(Account[] dataSource) {
+    public FragmentAccountAccountListAdapter(Account[] dataSource, OnFragmentAccountListAccountClickListener listener) {
         this.dataSource = dataSource;
+        onFragmentAccountListAccountClickListener = listener;
     }
 
     @NonNull
@@ -33,6 +36,13 @@ public class FragmentAccountAccountListAdapter extends RecyclerView.Adapter<Frag
         holder.t_amount.setText(String.valueOf(dataSource[position].getBalance()) + " €");
         holder.t_id.setText(dataSource[position].getIban());
         holder.t_owner.setText(Singleton.getInstance().getUser().getName() + " " +Singleton.getInstance().getUser().getFirst_name());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onFragmentAccountListAccountClickListener.onAccountListClick(dataSource[position].getIndex());
+            }
+        });
     }
 
     @Override

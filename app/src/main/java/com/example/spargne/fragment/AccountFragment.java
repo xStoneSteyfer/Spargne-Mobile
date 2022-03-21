@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spargne.R;
+import com.example.spargne.activity.Accueil;
 import com.example.spargne.entity.Account;
 import com.example.spargne.model.Singleton;
 import com.example.spargne.list.FragmentAccountAccountListAdapter;
@@ -51,13 +52,13 @@ public class AccountFragment extends Fragment {
         r_currentAccount.setHasFixedSize(true);
         fragmentAccountAccountManager = new LinearLayoutManager(getContext());
         r_currentAccount.setLayoutManager(fragmentAccountAccountManager);
-        fragmentAccountAccountListAdapter = new FragmentAccountAccountListAdapter(currentAccountList);
+        fragmentAccountAccountListAdapter = new FragmentAccountAccountListAdapter(currentAccountList, (Accueil)getActivity());
         r_currentAccount.setAdapter(fragmentAccountAccountListAdapter);
 
         r_savingsAccount.setHasFixedSize(true);
         fragmentAccountAccountManager = new LinearLayoutManager(getContext());
         r_savingsAccount.setLayoutManager(fragmentAccountAccountManager);
-        fragmentAccountAccountListAdapter = new FragmentAccountAccountListAdapter(savingsAccountList);
+        fragmentAccountAccountListAdapter = new FragmentAccountAccountListAdapter(savingsAccountList, (Accueil)getActivity());
         r_savingsAccount.setAdapter(fragmentAccountAccountListAdapter);
     }
 }
