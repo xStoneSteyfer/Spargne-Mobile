@@ -60,7 +60,6 @@ public class Sign_in extends AppCompatActivity {
                     Singleton.getInstance().setToken("Bearer " + response.body().getToken());
                     Singleton.getInstance().getLogin().setPassword(null);
                     Singleton.getInstance().setRequestGetUserByUuid(true);
-                    Singleton.getInstance().setRequestGetAccountByUuid(true);
                     Intent i = new Intent(Sign_in.this, Accueil.class);
                     startActivity(i);
                 } else {
