@@ -22,7 +22,7 @@ public class User {
     @SerializedName("postalAddress")
     private String postalAddress;
     @SerializedName("registrerDate")
-    private Date registrerDate;
+    private String registrerDate;
     @SerializedName("postalCode")
     private String postalCode;
     @SerializedName("country")
@@ -51,7 +51,7 @@ public class User {
     public String getName() { return name; }
     public String getFirstName() { return firstName; }
     public String getPostalAddress() { return postalAddress; }
-    public Date getRegistrerDate() { return registrerDate; }
+    public String getRegistrerDate() { return registrerDate; }
     public String getPostalCode() { return postalCode; }
     public String getCountry() { return country; }
     public String getCity() { return city; }

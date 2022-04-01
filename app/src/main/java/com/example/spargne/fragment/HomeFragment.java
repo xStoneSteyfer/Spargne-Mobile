@@ -10,11 +10,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spargne.R;
+import com.example.spargne.entity.Transaction;
+import com.example.spargne.list.FragmentHomeTransactionListAdapter;
 import com.example.spargne.model.RetrofitRequest;
 import com.example.spargne.model.Singleton;
+
+import java.util.Arrays;
 
 public class HomeFragment extends Fragment {
     private ProgressBar pb_accountLibelle;
@@ -41,18 +46,30 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        if(Singleton.getInstance().isRequestGetUserByUuid()) {
-            RetrofitRequest retrofitRequest = new RetrofitRequest();
-            retrofitRequest.getUserByUuid(getActivity());
-            Singleton.getInstance().setRequestGetUserByUuid(false);
+        if (Singleton.getInstance().getUser() != null) {
+            if (Singleton.getInstance().getUser().getAccounts() != null) {
+                if (Singleton.getInstance().isRequestGetTransactionById()) {
+                    RetrofitRequest retrofitRequest = new RetrofitRequest();
+                    retrofitRequest.getTransactionById(getActivity(), Singleton.getInstance().getUser().getAccounts()[0].getId(), 0, 5);
+                    Singleton.getInstance().setRequestGetTransactionById(false);
+                }
+            }
         }
         if (Singleton.getInstance().getUser() != null) {
             if (Singleton.getInstance().isRequestGetAccountByUuid()) {
                 RetrofitRequest retrofitRequest = new RetrofitRequest();
                 retrofitRequest.getAccountByUuid(getActivity());
                 Singleton.getInstance().setRequestGetAccountByUuid(false);
+                Singleton.getInstance().setRequestGetTransactionById(true);
             }
         }
+        if(Singleton.getInstance().isRequestGetUserByUuid()) {
+            RetrofitRequest retrofitRequest = new RetrofitRequest();
+            retrofitRequest.getUserByUuid(getActivity());
+            Singleton.getInstance().setRequestGetUserByUuid(false);
+        }
+
+
 
         pb_accountLibelle = getView().findViewById(R.id.fragment_home_progressBar_accountLibelle);
         pb_accountAmount = getView().findViewById(R.id.fragment_home_progressBar_accountAmount);
@@ -81,22 +98,20 @@ public class HomeFragment extends Fragment {
             t_accountId.setVisibility(View.INVISIBLE);
         }
 
-        /*try {
+        try {
             r_transaction.setHasFixedSize(true);
             fragmentHomeTransactionManager = new LinearLayoutManager(getContext());
             r_transaction.setLayoutManager(fragmentHomeTransactionManager);
-            Transaction[] list1 = {
-                    new Transaction("15/02", "Subway Beaurains", 9.90),
-                    new Transaction("16/02", "Centre Leclerc Arras", 2.61),
-                    new Transaction("17/02", "Essence Station Beaurains", 60.45)
-            };
-            fragmentHomeTransactionListAdapter = new FragmentHomeTransactionListAdapter(list1);
+            if(Singleton.getInstance().getUser().getAccounts()[0].getTransactions().length > 3){
+                Singleton.getInstance().getUser().getAccounts()[0].setTransactions(Arrays.copyOf(Singleton.getInstance().getUser().getAccounts()[0].getTransactions(), 5));
+            }
+            fragmentHomeTransactionListAdapter = new FragmentHomeTransactionListAdapter(Singleton.getInstance().getUser().getAccounts()[0]);
             r_transaction.setAdapter(fragmentHomeTransactionListAdapter);
-        } catch (Exception e){*/
+        } catch (Exception e){
             pb_transaction.setVisibility(View.VISIBLE);
             r_transaction.setVisibility(View.INVISIBLE);
             r_transaction.setMinimumHeight(300);
-        //}
+        }
 
         try {
             t_advisorName.setText(Singleton.getInstance().getUser().getAdvisor().getName() + " " + Singleton.getInstance().getUser().getAdvisor().getFirstName());

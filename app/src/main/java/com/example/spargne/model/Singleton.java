@@ -28,6 +28,7 @@ public class Singleton {
 
     private boolean requestGetUserByUuid;
     private boolean requestGetAccountByUuid;
+    private boolean requestGetTransactionById;
 
     private Login login;
     private String token;
@@ -35,10 +36,9 @@ public class Singleton {
 
 
 
-
-
     public boolean isRequestGetUserByUuid() { return requestGetUserByUuid; }
     public boolean isRequestGetAccountByUuid() { return requestGetAccountByUuid; }
+    public boolean isRequestGetTransactionById() { return requestGetTransactionById; }
 
     public Login getLogin() { return login; }
     public String getToken() { return token; }
@@ -48,6 +48,7 @@ public class Singleton {
 
     public void setRequestGetUserByUuid(boolean requestGetUserByUuid) { this.requestGetUserByUuid = requestGetUserByUuid; }
     public void setRequestGetAccountByUuid(boolean requestGetAccountByUuid) { this.requestGetAccountByUuid = requestGetAccountByUuid; }
+    public void setRequestGetTransactionById(boolean requestGetTransactionById) { this.requestGetTransactionById = requestGetTransactionById; }
 
     public void setLogin(Login login) { this.login = login; }
     public void setToken(String token) { this.token = token; }
@@ -58,6 +59,7 @@ public class Singleton {
 
         requestGetUserByUuid = false;
         requestGetAccountByUuid = false;
+        requestGetTransactionById = false;
 
         login = null;
         token = null;

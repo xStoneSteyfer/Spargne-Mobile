@@ -27,6 +27,7 @@ public class Account {
     @SerializedName("type")
     private AccountType type;
     private int index;
+    private Transaction[] transactions;
 
     public int getId() { return id; }
     public String getName() { return name; }
@@ -39,6 +40,8 @@ public class Account {
     public int getRate() { return rate; }
     public AccountType getType() { return type; }
     public int getIndex() { return index; }
+    public Transaction[] getTransactions() { return transactions; }
 
     public void setIndex(int index) { this.index = index; }
+    public void setTransactions(Transaction[] transactions) { this.transactions = transactions; }
 }

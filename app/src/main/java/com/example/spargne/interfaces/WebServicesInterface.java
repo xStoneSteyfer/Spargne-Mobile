@@ -2,6 +2,7 @@ package com.example.spargne.interfaces;
 
 import com.example.spargne.entity.Account;
 import com.example.spargne.entity.Login;
+import com.example.spargne.entity.Transaction;
 import com.example.spargne.entity.User;
 import com.example.spargne.entity.Token;
 
@@ -22,4 +23,7 @@ public interface WebServicesInterface {
 
     @GET("accounts/{uuid}")
     Call<Account[]> getAccountByUuid(@Header("Authorization") String token, @Path("uuid") String uuid);
+
+    @GET("transfert/{id}/{first}/{last}")
+    Call<Transaction[]> getTransactionById(@Header("Authorization") String token, @Path("id") int id, @Path("first") int first, @Path("last") int last);
 }

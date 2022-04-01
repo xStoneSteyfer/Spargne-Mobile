@@ -1,22 +1,15 @@
 package com.example.spargne.model;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.spargne.R;
 import com.example.spargne.activity.Accueil;
-import com.example.spargne.activity.Sign_in;
 import com.example.spargne.entity.Account;
-import com.example.spargne.entity.Login;
-import com.example.spargne.entity.Token;
+import com.example.spargne.entity.Transaction;
 import com.example.spargne.entity.User;
 import com.example.spargne.interfaces.WebServicesInterface;
-import com.example.spargne.popup.Loading_popup;
-import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +21,9 @@ public class RetrofitRequest {
 
     public void getUserByUuid(Activity activity)
     {
-        activity.findViewById(R.id.bottomNavigationView).setEnabled(false);
+        try {
+            activity.findViewById(R.id.bottomNavigationView).setEnabled(false);
+        } catch (Exception e){}
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
         Call<User> getUserByUuid = webServicesInterface.getUserByUuid(Singleton.getInstance().getToken(), Singleton.getInstance().getLogin().getUuid());
@@ -44,20 +39,26 @@ public class RetrofitRequest {
                 } else {
                     Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show();
                 }
-                activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(activity, "Error connection", Toast.LENGTH_SHORT).show();
-                activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
             }
         });
     }
 
     public void getAccountByUuid(Activity activity)
     {
-        activity.findViewById(R.id.bottomNavigationView).setEnabled(false);
+        try {
+            activity.findViewById(R.id.bottomNavigationView).setEnabled(false);
+        } catch (Exception e){}
         Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
         Call<Account[]> getAccountByUuid = webServicesInterface.getAccountByUuid(Singleton.getInstance().getToken(), Singleton.getInstance().getLogin().getUuid());
@@ -80,13 +81,56 @@ public class RetrofitRequest {
                 } else {
                     Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show();
                 }
-                activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
             }
 
             @Override
             public void onFailure(Call<Account[]> call, Throwable t) {
                 Toast.makeText(activity, "Error connection", Toast.LENGTH_SHORT).show();
-                activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
+            }
+        });
+    }
+
+    public void getTransactionById(Activity activity, int accountId, int first, int last)
+    {
+        try {
+            activity.findViewById(R.id.bottomNavigationView).setEnabled(false);
+        } catch (Exception e){}
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
+        Call<Transaction[]> getTransactionById = webServicesInterface.getTransactionById(Singleton.getInstance().getToken(), accountId, first, last);
+        getTransactionById.enqueue(new Callback<Transaction[]>() {
+            @Override
+            public void onResponse(Call<Transaction[]> call, Response<Transaction[]> response) {
+                if (response.body() != null) {
+                    for (int i = 0; i < Singleton.getInstance().getUser().getAccounts().length; i++) {
+                        if (Singleton.getInstance().getUser().getAccounts()[i].getId() == accountId){
+                            Singleton.getInstance().getUser().getAccounts()[i].setTransactions(response.body());
+                        }
+                    }
+                    Intent i = activity.getIntent();
+                    activity.overridePendingTransition(0, 0);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    activity.startActivity(i);
+                } else {
+                    Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show();
+                }
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
+            }
+
+            @Override
+            public void onFailure(Call<Transaction[]> call, Throwable t) {
+                Toast.makeText(activity, "Error connection", Toast.LENGTH_SHORT).show();
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
             }
         });
     }

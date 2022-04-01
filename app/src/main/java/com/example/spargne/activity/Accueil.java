@@ -114,9 +114,7 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
 
 
 
-    public void goToFirstAccountDetails(View v){
-        goToAccountDetails(0);
-    }
+    public void goToFirstAccountDetails(View v){ goToAccountDetails(0); }
 
     @Override
     public void onAccountListClick(int indexAccount) {
@@ -124,6 +122,7 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
     }
 
     public void goToAccountDetails(int indexAccount){
+        Singleton.getInstance().setRequestGetAccountByUuid(true);
         Intent i = new Intent(this, AccountDetails.class);
         i.putExtra("indexAccount", indexAccount);
         startActivity(i);

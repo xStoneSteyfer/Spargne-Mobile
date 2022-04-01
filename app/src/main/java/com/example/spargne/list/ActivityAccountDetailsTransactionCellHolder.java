@@ -15,8 +15,8 @@ public class ActivityAccountDetailsTransactionCellHolder extends RecyclerView.Vi
 
     public ActivityAccountDetailsTransactionCellHolder(@NonNull View itemView) {
         super(itemView);
-        t_date = itemView.findViewById(R.id.fragment_home_layout_transaction_textView_date);
-        t_libelle = itemView.findViewById(R.id.fragment_home_layout_transaction_textView_libelle);
-        t_amount = itemView.findViewById(R.id.fragment_home_layout_transaction_textView_amount);
+        t_date = itemView.findViewById(R.id.activity_accountDetails_layout_transaction_textView_date);
+        t_libelle = itemView.findViewById(R.id.activity_accountDetails_layout_transaction_textView_libelle);
+        t_amount = itemView.findViewById(R.id.activity_accountDetails_layout_transaction_textView_amount);
     }
 }
