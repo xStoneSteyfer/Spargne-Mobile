@@ -10,13 +10,13 @@ public class Beneficiary {
     private int id;
     @SerializedName("name")
     private String name;
-    @SerializedName("added_date")
-    private Date added_date;
+    @SerializedName("addedDate")
+    private Date addedDate;
     @SerializedName("account")
     private Account account;
 
     public int getId() { return id; }
     public String getName() { return name; }
-    public Date getAdded_date() { return added_date; }
+    public Date getAddedDate() { return addedDate; }
     public Account getAccount() { return account; }
 }

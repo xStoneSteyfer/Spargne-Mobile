@@ -17,20 +17,20 @@ public class User {
     private String email;
     @SerializedName("name")
     private String name;
-    @SerializedName("first_name")
-    private String first_name;
-    @SerializedName("postal_address")
-    private String postal_address;
-    @SerializedName("registrer_date")
-    private Date registrer_date;
-    @SerializedName("postal_code")
-    private String postal_code;
+    @SerializedName("firstName")
+    private String firstName;
+    @SerializedName("postalAddress")
+    private String postalAddress;
+    @SerializedName("registrerDate")
+    private Date registrerDate;
+    @SerializedName("postalCode")
+    private String postalCode;
     @SerializedName("country")
     private String country;
     @SerializedName("city")
     private String city;
-    @SerializedName("phone_number")
-    private String phone_number;
+    @SerializedName("phoneNumber")
+    private String phoneNumber;
     @SerializedName("advisor")
     private Advisor advisor;
     @SerializedName("firstMdp")
@@ -49,13 +49,13 @@ public class User {
     public JsonArray getRoles() { return roles; }
     public String getEmail() { return email; }
     public String getName() { return name; }
-    public String getFirst_name() { return first_name; }
-    public String getPostal_address() { return postal_address; }
-    public Date getRegistrer_date() { return registrer_date; }
-    public String getPostal_code() { return postal_code; }
+    public String getFirstName() { return firstName; }
+    public String getPostalAddress() { return postalAddress; }
+    public Date getRegistrerDate() { return registrerDate; }
+    public String getPostalCode() { return postalCode; }
     public String getCountry() { return country; }
     public String getCity() { return city; }
-    public String getPhone_number() { return phone_number; }
+    public String getPhoneNumber() { return phoneNumber; }
     public Advisor getAdvisor() { return advisor; }
     public boolean isFirstMdp() { return firstMdp; }
     public Account[] getAccounts() { return accounts; }

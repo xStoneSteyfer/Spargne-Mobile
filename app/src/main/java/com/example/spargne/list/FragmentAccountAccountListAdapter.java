@@ -35,7 +35,7 @@ public class FragmentAccountAccountListAdapter extends RecyclerView.Adapter<Frag
         holder.t_libelle.setText(dataSource[position].getName());
         holder.t_amount.setText(String.valueOf(dataSource[position].getBalance()) + " €");
         holder.t_id.setText(dataSource[position].getIban());
-        holder.t_owner.setText(Singleton.getInstance().getUser().getName() + " " +Singleton.getInstance().getUser().getFirst_name());
+        holder.t_owner.setText(Singleton.getInstance().getUser().getName() + " " +Singleton.getInstance().getUser().getFirstName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

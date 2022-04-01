@@ -1,7 +1,6 @@
 package com.example.spargne.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,7 +99,7 @@ public class HomeFragment extends Fragment {
         //}
 
         try {
-            t_advisorName.setText(Singleton.getInstance().getUser().getAdvisor().getName() + " " + Singleton.getInstance().getUser().getAdvisor().getFirst_name());
+            t_advisorName.setText(Singleton.getInstance().getUser().getAdvisor().getName() + " " + Singleton.getInstance().getUser().getAdvisor().getFirstName());
             t_advisorLocation.setText("S'pargne Center in " + Singleton.getInstance().getUser().getAdvisor().getCity() + ", " + Singleton.getInstance().getUser().getAdvisor().getCountry());
         } catch (Exception e){
             pb_advisorName.setVisibility(View.VISIBLE);
