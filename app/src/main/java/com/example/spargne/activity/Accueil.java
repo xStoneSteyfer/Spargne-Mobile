@@ -11,22 +11,31 @@ import android.view.View;
 
 import com.example.spargne.R;
 import com.example.spargne.entity.Account;
+import com.example.spargne.entity.MeetingTopic;
 import com.example.spargne.fragment.AccountFragment;
 import com.example.spargne.fragment.CardFragment;
 import com.example.spargne.fragment.HomeFragment;
+import com.example.spargne.fragment.MeetingRequestFragment;
 import com.example.spargne.fragment.MenuFragment;
 import com.example.spargne.fragment.TransferFragment;
 import com.example.spargne.interfaces.OnFragmentAccountListAccountClickListener;
+import com.example.spargne.interfaces.OnMeetingTopicClickListener;
+import com.example.spargne.model.RetrofitRequest;
 import com.example.spargne.model.Singleton;
+import com.example.spargne.popup.Loading_popup;
+import com.example.spargne.popup.Meeting_date_pop_up;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Accueil extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, OnFragmentAccountListAccountClickListener {
+public class Accueil extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, OnFragmentAccountListAccountClickListener, OnMeetingTopicClickListener {
+    Loading_popup popupLoading;
+    Meeting_date_pop_up popupMeetingDate;
 
     Fragment homeFragment;
     Fragment accountFragment;
     Fragment transferFragment;
     Fragment cardFragment;
     Fragment menuFragment;
+    Fragment meetingFragment;
     BottomNavigationView bottomNavigationView;
 
     @Override
@@ -39,6 +48,7 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
         transferFragment = new TransferFragment();
         cardFragment = new CardFragment();
         menuFragment = new MenuFragment();
+        meetingFragment = new MeetingRequestFragment();
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
@@ -63,6 +73,10 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
             case "menuFragment":
                 loadFragment(menuFragment);
                 bottomNavigationView.getMenu().getItem(4).setChecked(true);
+                break;
+            case "meetingFragment":
+                loadFragment(meetingFragment);
+                bottomNavigationView.getMenu().getItem(0).setChecked(true);
                 break;
         }
     }
@@ -111,7 +125,22 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
     }
 
 
+    public void loadMeetingRequest(View v){
+        popupLoading = new Loading_popup(this);
+        popupLoading.build();
 
+        RetrofitRequest retrofitRequest = new RetrofitRequest();
+        retrofitRequest.getMeetingTopic(this);
+        //
+    }
+
+    public void meetingRequestClick(View v){
+        System.out.println(popupMeetingDate.getDate());
+        popupLoading = new Loading_popup(this);
+        popupLoading.build();
+        RetrofitRequest retrofitRequest = new RetrofitRequest();
+        retrofitRequest.setMeetingRequest(this, popupMeetingDate.getDate(), Singleton.getInstance().getUser().getId(), Singleton.getInstance().getMeetingTopicsSelected().getId());
+    }
 
 
     public void goToFirstAccountDetails(View v){ goToAccountDetails(0); }
@@ -134,5 +163,13 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
     public void onBackPressed() {
         Intent i = new Intent(this, Sign_in.class);
         startActivity(i);
+    }
+
+    @Override
+    public void onMeetingTopicListClick(MeetingTopic meetingTopic) {
+
+        Singleton.getInstance().setMeetingTopicsSelected(meetingTopic);
+        popupMeetingDate = new Meeting_date_pop_up(this);
+        popupMeetingDate.build();
     }
 }

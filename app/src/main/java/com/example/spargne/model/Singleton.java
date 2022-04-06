@@ -3,6 +3,7 @@ package com.example.spargne.model;
 import androidx.fragment.app.Fragment;
 
 import com.example.spargne.entity.Login;
+import com.example.spargne.entity.MeetingTopic;
 import com.example.spargne.entity.User;
 import com.example.spargne.fragment.HomeFragment;
 
@@ -29,6 +30,8 @@ public class Singleton {
     private boolean requestGetUserByUuid;
     private boolean requestGetAccountByUuid;
     private boolean requestGetTransactionById;
+    private MeetingTopic[] meetingTopics;
+    private MeetingTopic meetingTopicsSelected;
 
     private Login login;
     private String token;
@@ -53,6 +56,22 @@ public class Singleton {
     public void setLogin(Login login) { this.login = login; }
     public void setToken(String token) { this.token = token; }
     public void setUser(User user) { this.user = user; }
+
+    public MeetingTopic[] getMeetingTopics() {
+        return meetingTopics;
+    }
+
+    public void setMeetingTopics(MeetingTopic[] meetingTopics) {
+        this.meetingTopics = meetingTopics;
+    }
+
+    public MeetingTopic getMeetingTopicsSelected() {
+        return meetingTopicsSelected;
+    }
+
+    public void setMeetingTopicsSelected(MeetingTopic meetingTopicsSelected) {
+        this.meetingTopicsSelected = meetingTopicsSelected;
+    }
 
     public void clear() {
         currentFragment = "homeFragment";

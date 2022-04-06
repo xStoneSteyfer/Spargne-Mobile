@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.example.spargne.R;
 import com.example.spargne.activity.Accueil;
 import com.example.spargne.entity.Account;
+import com.example.spargne.entity.MeetingTopic;
 import com.example.spargne.entity.Transaction;
 import com.example.spargne.entity.User;
 import com.example.spargne.interfaces.WebServicesInterface;
@@ -131,6 +132,91 @@ public class RetrofitRequest {
                 try {
                     activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
                 } catch (Exception e){}
+            }
+        });
+    }
+
+    public void getMeetingTopic(Activity activity)
+    {
+        try {
+            activity.findViewById(R.id.bottomNavigationView).setEnabled(false);
+        } catch (Exception e){}
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
+
+        Call<MeetingTopic[]> getMeetingTopics = webServicesInterface.getMeetingTopic();
+        getMeetingTopics.enqueue(new Callback<MeetingTopic[]>() {
+            @Override
+            public void onResponse(Call<MeetingTopic[]> call, Response<MeetingTopic[]> response) {
+                if (response.body() != null) {
+                    Singleton.getInstance().setMeetingTopics(response.body());
+                    Singleton.getInstance().currentFragment = "meetingFragment";
+                    Intent i = activity.getIntent();
+                    activity.overridePendingTransition(0, 0);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    activity.startActivity(i);
+                } else {
+                    Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show();
+                }
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
+            }
+
+            @Override
+            public void onFailure(Call<MeetingTopic[]> call, Throwable t) {
+                Toast.makeText(activity, "Error connection", Toast.LENGTH_SHORT).show();
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
+            }
+        });
+    }
+
+    public void setMeetingRequest(Activity activity, String desireDate, int customerId, int topicId)
+    {
+        try {
+            activity.findViewById(R.id.bottomNavigationView).setEnabled(false);
+        } catch (Exception e){}
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(Singleton.getInstance().BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+        WebServicesInterface webServicesInterface = retrofit.create(WebServicesInterface.class);
+
+        Call<Integer> setMeetingRequest = webServicesInterface.setMeetingRequest(desireDate,customerId,topicId);
+        setMeetingRequest.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                if (response.body() != null) {
+                    if(response.body() == 1){
+                        Toast.makeText(activity, "Meeting request send", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(activity, "An error occured", Toast.LENGTH_SHORT).show();
+                    }
+                    Singleton.getInstance().currentFragment = "homeFragment";
+                    Intent i = activity.getIntent();
+                    activity.overridePendingTransition(0, 0);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    activity.startActivity(i);
+                } else {
+                    Toast.makeText(activity, response.message(), Toast.LENGTH_SHORT).show();
+                }
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+                Toast.makeText(activity, "Error connection", Toast.LENGTH_SHORT).show();
+                try {
+                    activity.findViewById(R.id.bottomNavigationView).setEnabled(true);
+                } catch (Exception e){}
+                Singleton.getInstance().currentFragment = "homeFragment";
+                Intent i = activity.getIntent();
+                activity.overridePendingTransition(0, 0);
+                i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                activity.startActivity(i);
             }
         });
     }
