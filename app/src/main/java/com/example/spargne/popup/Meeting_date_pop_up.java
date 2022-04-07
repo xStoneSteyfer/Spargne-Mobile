@@ -26,6 +26,6 @@ public class Meeting_date_pop_up extends Dialog {
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth();
         int year = datePicker.getYear();
-        return String.valueOf(day)+"."+String.valueOf(month)+"."+String.valueOf(year);
+        return String.valueOf(day)+"."+String.valueOf(month + 1)+"."+String.valueOf(year);
     }
 }
