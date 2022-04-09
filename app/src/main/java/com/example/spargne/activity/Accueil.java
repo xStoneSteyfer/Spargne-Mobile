@@ -143,13 +143,16 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
     }
 
 
+    //Lors d'un click sur le compte du fragment home
     public void goToFirstAccountDetails(View v){ goToAccountDetails(0); }
 
+    //Lors d'un click sur un compte dans le fragment account
     @Override
     public void onAccountListClick(int indexAccount) {
         goToAccountDetails(indexAccount);
     }
 
+    //fonction permettant d'aller sur la page AccountDetail
     public void goToAccountDetails(int indexAccount){
         Singleton.getInstance().setRequestGetAccountByUuid(true);
         Intent i = new Intent(this, AccountDetails.class);

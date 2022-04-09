@@ -1,11 +1,8 @@
 package com.example.spargne.model;
 
-import androidx.fragment.app.Fragment;
-
 import com.example.spargne.entity.Login;
 import com.example.spargne.entity.MeetingTopic;
 import com.example.spargne.entity.User;
-import com.example.spargne.fragment.HomeFragment;
 
 public class Singleton {
 
