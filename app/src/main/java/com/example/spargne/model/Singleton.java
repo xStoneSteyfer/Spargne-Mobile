@@ -21,7 +21,7 @@ public class Singleton {
 
 
 
-    public static final String BASE_URL = "https://s4-8040.nuage-peda.fr/Spargne/public/api/";
+    public static final String BASE_URL = "https://epsi.nuage-pedagogique.fr/G1-situation1/api/";
     public String currentFragment = "homeFragment";
 
     private boolean requestGetUserByUuid;
