@@ -41,9 +41,10 @@ public class MeetingRequestFragment extends Fragment {
 
         MeetingTopic[] listTopic = Singleton.getInstance().getMeetingTopics();
 
-        topicListAdapter = new FragmentMeetingRequestListAdapter(listTopic,(OnMeetingTopicClickListener) getContext());//, (OnCategoryClickListener) container.getContext());
+        topicListAdapter = new FragmentMeetingRequestListAdapter(listTopic,(OnMeetingTopicClickListener) getContext());
         topicListRecyclerView.setAdapter(topicListAdapter);
     }
 
 
 }
+

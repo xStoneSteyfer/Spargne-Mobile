@@ -131,7 +131,6 @@ public class Accueil extends AppCompatActivity implements BottomNavigationView.O
 
         RetrofitRequest retrofitRequest = new RetrofitRequest();
         retrofitRequest.getMeetingTopic(this);
-        //
     }
 
     public void meetingRequestClick(View v){
