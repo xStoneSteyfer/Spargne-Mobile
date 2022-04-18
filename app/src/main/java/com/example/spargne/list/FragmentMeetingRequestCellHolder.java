@@ -17,3 +17,4 @@ public class FragmentMeetingRequestCellHolder  extends RecyclerView.ViewHolder {
         libelle = itemView.findViewById(R.id.cell_meeting_topic_libelle);
     }
 }
+
